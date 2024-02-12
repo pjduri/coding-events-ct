@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("event-categories")
+@RequestMapping("eventCategories")
 public class EventCategoryController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class EventCategoryController {
         }
         eventCategoryRepository.save(eventCategory);
 
-        return "redirect:";
+        return "redirect:/eventCategories";
     }
 
 }
