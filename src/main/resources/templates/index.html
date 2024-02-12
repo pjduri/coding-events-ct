@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Hello Thymeleaf</title>
-</head>
-<body>
-    <a href="events">Events</a>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1>Coding Events</h1>
+
+<header th:replace="fragments :: header"></header>
+
 </body>
 </html>
