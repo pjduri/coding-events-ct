@@ -1,9 +1,9 @@
 package org.codingevents.codingevents.controllers;
 
 import jakarta.validation.Valid;
+import org.codingevents.codingevents.data.EventCategoryRepository;
 import org.codingevents.codingevents.data.EventRepository;
 import org.codingevents.codingevents.models.Event;
-import org.codingevents.codingevents.models.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +17,8 @@ public class EventController {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventCategoryRepository eventCategoryRepository;
     // findAll, save, findById
 
     @GetMapping
@@ -30,7 +32,8 @@ public class EventController {
     public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
-        model.addAttribute("types", EventType.values());
+        model.addAttribute("categories", eventCategoryRepository.findAll());
+
         return "events/create";
     }
 

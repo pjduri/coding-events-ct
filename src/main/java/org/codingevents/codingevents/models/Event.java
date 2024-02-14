@@ -1,14 +1,12 @@
 package org.codingevents.codingevents.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
-import java.util.Objects;
 
 @Entity
 public class Event extends AbstractEntity {
@@ -24,13 +22,15 @@ public class Event extends AbstractEntity {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    private EventType type;
+    @ManyToOne
+    @NotNull(message = "Category is required")
+    private EventCategory eventCategory;
 
-    public Event(String name, String description, String contactEmail, EventType type) {
+    public Event(String name, String description, String contactEmail, EventCategory eventCategory) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.type = type;
+        this.eventCategory = eventCategory;
     }
 
     public Event() {}
@@ -60,9 +60,13 @@ public class Event extends AbstractEntity {
         this.contactEmail = contactEmail;
     }
 
-    public EventType getType() { return type; }
+    public EventCategory getEventCategory() {
+        return eventCategory;
+    }
 
-    public void setType(EventType type) { this.type = type; }
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
+    }
 
     @Override
     public String toString() {
